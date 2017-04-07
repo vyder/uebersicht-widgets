@@ -46,8 +46,11 @@ update: (output, domEl) ->
   $('#charge').css('fill',fill)
   $('#bolt').css('display', charging && 'block' || 'none')
 
-
   text.text(charge + '%')
+  if charge >= 100
+    text.attr('x', 67)
+  else
+    text.attr('x', 74)
 
 
 

@@ -1,3 +1,7 @@
+# Forecast.IO Weather widget
+# Vidur Murali, 2017
+# 
+# Code forked from:
 # Authentic Weather for Übersicht
 # reduxd, 2015
 
@@ -32,14 +36,8 @@ makeCommand: (apiKey, location) ->
 
 render: (o) -> """
     <article id="content">
-
-        <!-- snippet -->
-        <div id="snippet">
-        </div>
-
-        <!--phrase text box -->
-        <h1>
-        </h1>
+        <img  id="icon" src="">
+        <span id="temperature"></span>
     </article>
 """
 
@@ -48,7 +46,6 @@ afterRender: (domEl) ->
         latitude:  19.076,
         longitude: 72.878
     }
-    console.log(coords)
     [lat, lon] = [coords.latitude, coords.longitude]
     @command   = @makeCommand(@apiKey, "#{lat},#{lon}")
 
@@ -68,48 +65,43 @@ update: (o, dom) ->
 
     # snippet control
 
-    snippetContent = []
+    icon = $('#icon')
+    temperature = $('#temperature')
 
     # icon dump from android app
     if @showIcon
-        snippetContent.push "<img src='authentic.widget/icon/#{ @icon }/#{ s1 }.png'></img>"
+        icon.attr('src', "authentic.widget/icon/#{ @icon }/#{ s1 }.png")
 
     if @showTemp
         if @unit == 'f'
-            snippetContent.push "#{ Math.round(t * 9 / 5 + 32) } °F"
+            temperature.text "#{ Math.round(t * 9 / 5 + 32) } °F"
         else
-            snippetContent.push "#{ Math.round(t) } °C"
-
-    $(dom).find('#snippet').html snippetContent.join '  '
+            temperature.text "#{ Math.round(t) } °C"
 
 # adapted from authenticweather.com
 style: """
-    width 500px
+    width 120px
     bottom 10px
-    margin-left: 240px
+    margin-left 190px
     font-family 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, 'Open Sans', sans-serif
     font-smooth always
     color #ffffff
 
-    #snippet
+    #content
+        width  100px
+        margin 0 auto
+
+    #temperature
+        margin-left 10px
+        margin-top  5px
         font-size 2em
         font-weight 500
+        display block
 
-        img
-            max-width 100px
-            margin-bottom -3px
-
-    h1
-        font-size 3.3em
-        font-weight 600
-        line-height 1em
-        letter-spacing -0.04em
-        margin 0 0 0 0
-
-    h2
+    #icon
+        font-size 2em
         font-weight 500
-        font-size 1em
-
-    i
-        font-style normal
+        vertical-align middle
+        max-width 100px
+        margin-bottom -3px
 """

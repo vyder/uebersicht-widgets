@@ -70,7 +70,7 @@ update: (o, dom) ->
 
     # icon dump from android app
     if @showIcon
-        icon.attr('src', "authentic.widget/icon/#{ @icon }/#{ s1 }.png")
+        icon.attr('src', "weather.widget/icon/#{ @icon }/#{ s1 }.png")
 
     if @showTemp
         if @unit == 'f'

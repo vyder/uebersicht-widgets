@@ -55,9 +55,9 @@ style: """
   // Next, let's sort out positioning.
 
   if #{options.stickInCorner} == false
-    vert_margin = 100px
-    horz_margin = 20px
-    box-shadow 0 20px 40px 0px rgba(0,0,0,.6)
+    vert_margin = 215px
+    horz_margin = 10px
+    //box-shadow 0 20px 40px 0px rgba(0,0,0,.6)
     border-radius 0px
     .text
       border-radius 0 0 0px 0px
@@ -186,6 +186,9 @@ style: """
       width mainDimension * Scale
       height @width
       margin 0
+
+    .album, .artist, .song
+      max-width mainDimension * Scale
 
     .text
       margin 20px

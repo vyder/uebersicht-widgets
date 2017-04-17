@@ -55,28 +55,32 @@ update: (o, dom) ->
     # parse command json
     data = JSON.parse(o)
 
-    return unless data.currently?
-    # get current temp from json
-    t = data.currently.temperature
+    if data.currently?
+        # get current temp from json
+        t = data.currently.temperature
 
-    # process condition data (1/2)
-    s1 = data.currently.icon
-    s1 = s1.replace(/-/g, "_")
+        # process condition data (1/2)
+        s1 = data.currently.icon
+        s1 = s1.replace(/-/g, "_")
 
-    # snippet control
+        # snippet control
 
-    icon = $('#icon')
-    temperature = $('#temperature')
+        icon = $('#icon')
+        temperature = $('#temperature')
 
-    # icon dump from android app
-    if @showIcon
-        icon.attr('src', "weather.widget/icon/#{ @icon }/#{ s1 }.png")
+        # icon dump from android app
+        if @showIcon
+            icon.attr('src', "weather.widget/icon/#{ @icon }/#{ s1 }.png")
 
-    if @showTemp
-        if @unit == 'f'
-            temperature.text "#{ Math.round(t * 9 / 5 + 32) } °F"
-        else
-            temperature.text "#{ Math.round(t) } °C"
+        if @showTemp
+            if @unit == 'f'
+                temperature.text "#{ Math.round(t * 9 / 5 + 32) } °F"
+            else
+                temperature.text "#{ Math.round(t) } °C"
+
+        $("#content").show()
+    else
+        $("#content").hide()
 
 # adapted from authenticweather.com
 style: """

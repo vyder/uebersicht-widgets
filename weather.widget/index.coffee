@@ -82,7 +82,7 @@ update: (o, dom) ->
 style: """
     width 120px
     bottom 10px
-    margin-left 190px
+    margin-left 210px
     font-family 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, 'Open Sans', sans-serif
     font-smooth always
     color #ffffff

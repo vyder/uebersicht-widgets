@@ -32,7 +32,7 @@ exclude: "minutely,hourly,alerts,flags"
 command: "echo {}"
 
 makeCommand: (apiKey, location) ->
-  "curl -sS 'https://api.forecast.io/forecast/#{apiKey}/#{location}?units=si&exclude=#{@exclude}'"
+  "curl -s 'https://api.forecast.io/forecast/#{apiKey}/#{location}?units=si&exclude=#{@exclude}'"
 
 render: (o) -> """
     <article id="content">

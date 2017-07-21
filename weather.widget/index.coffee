@@ -52,10 +52,13 @@ afterRender: (domEl) ->
     @refresh()
 
 update: (o, dom) ->
-    # parse command json
-    data = JSON.parse(o)
+    data = null
 
-    if data.currently?
+    try
+        # parse command json
+        data = JSON.parse(o)
+
+    if data && data.currently?
         # get current temp from json
         t = data.currently.temperature
 

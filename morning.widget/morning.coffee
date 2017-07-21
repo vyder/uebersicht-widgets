@@ -9,13 +9,13 @@ refreshFrequency: 30000
 
 #Body Style
 style: """
+  bottom: 5px
 
   color: #fff
   font-family: Helvetica Neue, Arial
   font-size: 1em
 
   .container
-   margin-top: 820px
    font-weight: lighter
    font-smoothing: antialiased
    text-align:center

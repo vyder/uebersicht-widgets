@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+def wifi_on?
+    # Sample Output: "Wi-Fi Power (en0): On\n"
+    !%x(networksetup -getairportpower en0).match(/On/).nil?
+end
+
+def network_name
+    # Sample output: "Current Wi-Fi Network: Xenon\n"
+    output = %x(networksetup -getairportnetwork en0).chomp
+    m = output.match /Current Wi-Fi Network: (.+)/
+    
+    m[1] unless m.nil?
+end
+
+def wifi_status
+    return "disconnected" unless wifi_on?
+    return "Searching..." if network_name.nil?
+
+    network_name
+end
+
+puts wifi_status

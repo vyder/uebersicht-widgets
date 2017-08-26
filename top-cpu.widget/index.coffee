@@ -5,8 +5,8 @@ refreshFrequency: 2000
 style: """
   bottom: 80px
   right: 10px
-  color: #fff
-  font-family: Helvetica Neue
+  color: #B7BCBE
+  font-family: 'HelveticaNeue-Light'
 
   table
     border-collapse: collapse
@@ -16,8 +16,8 @@ style: """
       content: 'cpu'
       position: absolute
       right: 0
-      top: -14px
-      font-size: 10px
+      top: -16px
+      font-size: 10pt
 
   td
     border: 1px solid #fff
@@ -41,8 +41,9 @@ style: """
   p
     padding: 0
     margin: 0
-    font-size: 11px
-    font-weight: normal
+    font-family: San Francisco Display
+    font-size: 8pt
+    font-weight: 500
     max-width: 100%
     color: #ddd
     text-overflow: ellipsis
@@ -52,8 +53,9 @@ style: """
     position: absolute
     top: 2px
     right: 2px
-    font-size: 10px
-    font-weight: normal
+    
+    font-size: 8pt
+    font-weight: 400
 
 """
 

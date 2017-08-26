@@ -56,8 +56,9 @@ update: (output) ->
 style: """
     bottom 206px
     right 10px
-    font-family Helvetica
-    font-weight 300
+    font-family 'San Francisco Display'
+    font-weight light
+    font-size 14pt
     font-smooth always
     color #B7BCBE
 

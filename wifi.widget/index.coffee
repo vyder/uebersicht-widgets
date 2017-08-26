@@ -8,53 +8,74 @@
 refreshFrequency: 3 * 1000
 
 # icon
-connected_icon:    "wifi.widget/glyphicons-74-wifi_white.svg"
-disconnected_icon: "wifi.widget/glyphicons-74-wifi_gray.svg"
+icon_img: "wifi.widget/glyphicons-74-wifi.svg"
 
 # ---------------------------- END CONFIG ----------------------------
 
 command: "wifi.widget/wifi_status"
 
 render: (output) -> """
-    <span id="info"></span>
-    <img class="icon" id="connected" src="#{@connected_icon}">
-    <img class="icon" id="disconnected" src="#{@disconnected_icon}">
+    <span id="wifi_info"></span>
+    <div id="wifi_icon"></div>
 """
 
+# Runs once after the render
+afterRender: ->
+    # Embed the SVG icon
+    @get_icon (err, content) ->
+        icon = $('#wifi_icon').hide()
+
+        return if err
+
+        parser = new DOMParser()
+        format = "image/svg+xml"
+
+        # Create svg element from content string
+        svg = parser.parseFromString(content, format).documentElement
+
+        # Clear existing content, and append the svg
+        icon.show().html('').append svg
+
+get_icon: (callback) ->
+    @run("cat #{@icon_img}", callback)
+
 update: (output) ->
-    connected_icon    = $('#connected')
-    disconnected_icon = $('#disconnected')
-
-    info = $('#info')
-
     is_connected = (output.match(/disconnected/i) == null)
 
-    connected_icon.toggle(is_connected)
-    disconnected_icon.toggle(!is_connected)
+    # Add/remove 'disconnected' if network is not connected
+    $('#wifi_icon').toggleClass('disconnected', !is_connected)
 
-    message = output
-    message = '' if !is_connected
+    # Slice to remove a random space that
+    # shows up at the end of the output
+    #
+    message = ''
+    message = output.slice(0, -1) if is_connected
 
-    info.text message
+    $('#wifi_info').text message
 
 style: """
-    bottom 205px
+    bottom 206px
     right 10px
     font-family Helvetica
     font-weight 300
     font-smooth always
     color #B7BCBE
 
-    #info
-        margin-right -4px
+    #wifi_info
+        margin-right -7px
 
-    .icon
+    #wifi_icon
+        display inline-block
         width 30px
-        margin-bottom -8px
-
-    #connected
         margin-right -1px
 
-    #disconnected
-        margin-right -4px
+        path
+            fill #B7BCBE
+        & > svg > g
+            transform translate(3px,12px)
+
+        &.disconnected
+            margin-right -8px
+            path
+                fill #5A747F
 """

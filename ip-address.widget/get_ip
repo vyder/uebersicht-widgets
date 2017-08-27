@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dig +short myip.opendns.com @resolver1.opendns.com
+dig 2>/dev/null +short myip.opendns.com @resolver1.opendns.com
 
 # output = %x(curl -s ipinfo.io)
 # m = output.match /"ip": "(.+?)"/

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+output = %x(curl -s ipinfo.io)
+m = output.match /"ip": "(.+?)"/
+
+puts m[1] unless m.nil?

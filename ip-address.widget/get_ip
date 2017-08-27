@@ -1,6 +1,8 @@
-#!/usr/bin/env ruby
+#!/bin/sh
 
-output = %x(curl -s ipinfo.io)
-m = output.match /"ip": "(.+?)"/
+dig +short myip.opendns.com @resolver1.opendns.com
 
-puts m[1] unless m.nil?
+# output = %x(curl -s ipinfo.io)
+# m = output.match /"ip": "(.+?)"/
+# puts output
+# puts m[1] unless m.nil?
